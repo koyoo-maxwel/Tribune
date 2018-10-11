@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-<nav class="navbar navbar-dark bg-primary" style="position:fixed; width:100%;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'newsToday' %}">The Moringa Tribune</a>
-    </div>
-    <!-- Adding a search form  -->
-    <div class="col-sm-4 col-md-4 navbar-right">
+  <nav class="navbar navbar-dark bg-primary" style="overflow: hidden; position: fixed; z-index: 1; width: 100%;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'newsToday' %}">The Moringa Tribune</a>
+      </div>
+      <!-- Adding a search form  -->
+      <div class="col-sm-4 col-md-4 navbar-right">
 
         <form class="navbar-form" role="search" action="{% url 'search_results' %}">
 
@@ -25,38 +27,39 @@
 
         </form>
       </div>
-    <!-- search form end -->
-    <div>
-            {% if user.is_authenticated %}
-            <ul>
-              <li class="dropdown" style="list-style:none;">
-                <a href="#" class="dropdown-toggle btn btn-dark" data-toggle="dropdown" role="button" aria-expanded="false">Account
-                          <span class="caret"></span>
-                      </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a href="{%url 'newsToday'%}">Home</a>
-                  </li>
-                  <li>
-                    <a href="{%url 'new-article'%}">Create Article</a>
-                  </li>
-                  <li>
-                    <a href="/accounts/password/change">Change Password</a>
-                  </li>
-                  <li>
-                    <a href="/logout">Logout</a>
-                  </li>
-                </ul>
+      <!-- search form end -->
+      <div>
+        {% if user.is_authenticated %}
+        <ul>
+          <li class="dropdown" style="list-style:none;">
+            <a href="#" class="dropdown-toggle btn btn-dark" data-toggle="dropdown" role="button" aria-expanded="false">Account
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="{%url 'newsToday'%}">Home</a>
+              </li>
+              <li>
+                <a href="{%url 'new-article'%}">Create Article</a>
+              </li>
+              <li>
+                <a href="/accounts/password/change">Change Password</a>
+              </li>
+              <li>
+                <a href="/logout">Logout</a>
               </li>
             </ul>
-            {% else %}
-            <li style="list-style:none;">
-              <a class='btn btn-dark' href="/accounts/login">Login</a>
-            </li>
+          </li>
+        </ul>
+        {% else %}
+        <li style="list-style:none;">
+          <a class='btn btn-dark' href="/accounts/login">Login</a>
+        </li>
 
-            {% endif %}
-          </div>  
-  </div>
-</nav>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
 </body>
+
 </html>

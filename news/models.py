@@ -56,3 +56,9 @@ class NewsLetterRecipients(models.Model):
     last_name = models.CharField(max_length = 100)
 
     email = models.EmailField()
+
+
+class MoringaMerch(models.Model):
+    name = models.CharField(max_length=40)
+    description = models.TextField()
+    price = models.DecimalField(decimal_places=2, max_digits=20)

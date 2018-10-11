@@ -51,6 +51,10 @@ class Article(models.Model):
         news = cls.objects.filter(title__icontains=search_term)
         return news
 
+    @classmethod
+    def get_all_articles(cls):
+        return cls.objects.all()
+
 class NewsLetterRecipients(models.Model):
     first_name = models.CharField(max_length = 100)
     last_name = models.CharField(max_length = 100)

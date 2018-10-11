@@ -17,7 +17,11 @@ from .serializer import MerchSerializer
 # Create your views here.
 def news_today(request):
     date = dt.date.today()
-    news = Article.todays_news()
+    news = Article.get_all_articles().order_by('-pub_date')
+
+    # news =  Article.todays_news()
+
+    print ( news )
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
         if form.is_valid():
@@ -32,7 +36,13 @@ def news_today(request):
             HttpResponseRedirect('news_today')
     else:
             form = NewsLetterForm()
-    return render(request, 'all-news/today-news.html',{'date': date,"news":news,"letterForm":form})
+
+    data = {
+        'date': date,
+        "news":news,
+        "letterForm":form
+        }
+    return render(request, 'all-news/today-news.html', data )
 
 def newsletter(request):
     name = request.POST.get('your_name')

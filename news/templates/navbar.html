@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-dark bg-primary" >
+  <nav class="navbar navbar-dark bg-primary" style="overflow: hidden; position: fixed; z-index: 1; width: 100%;">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="{% url 'newsToday' %}">The Moringa Tribune</a>
@@ -33,8 +33,8 @@
         <ul>
           <li class="dropdown" style="list-style:none;">
             <a href="#" class="dropdown-toggle btn btn-dark" data-toggle="dropdown" role="button" aria-expanded="false">Account
-              <span class="caret"></span>
-            </a>
+              <span class="caret"></span></a>
+            
             <ul class="dropdown-menu" role="menu">
               <li>
                 <a href="{%url 'newsToday'%}">Home</a>

@@ -12,12 +12,14 @@ from rest_framework.views import APIView
 from .models import  MoringaMerch
 from .serializer import MerchSerializer
 
+from django.utils.text import Truncator
+
 
 
 # Create your views here.
 def news_today(request):
     date = dt.date.today()
-    news = Article.get_all_articles().order_by('-pub_date')
+    news = Article.get_all_articles().order_by('-pub_date')[::1]
 
     # news =  Article.todays_news()
 
@@ -87,9 +89,16 @@ def search_results(request):
 def article(request,article_id):
     try:
         article = Article.objects.get(id = article_id)
+        truncated = Truncator( article.post).words(50)
+        print('this is truncated:' + truncated)
     except DoesNotExist:
         raise Http404()
-    return render(request,"all-news/article.html", {"article":article})
+
+    data = {
+        'article': article ,
+        'truncated' : truncated ,
+    }
+    return render(request,"all-news/article.html", data  )
 
 @login_required(login_url='/accounts/login/')
 def new_article(request):

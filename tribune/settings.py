@@ -79,8 +79,8 @@ WSGI_APPLICATION = 'tribune.wsgi.application'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'youremail@gmail.com'
-EMAIL_HOST_PASSWORD = 'password'
+EMAIL_HOST_USER = 'showcasetalanta@gmail.com'
+EMAIL_HOST_PASSWORD = 'Talanta12345'
 EMAIL_PORT = 587
 
 
@@ -141,4 +141,4 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")

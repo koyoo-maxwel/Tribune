@@ -4,48 +4,53 @@
 {% block content %}
 {{block.super}}
 
-<div class="container" style="padding-top:30px;">
 
-  <!-- Looping through news   -->
+
+<div class="container" style="padding-top:18px;">
+
   <div class="row">
-
+    {% for news_item in news %}
     <div class="col-md-4">
-      {% for news_item in news %}
-      <!-- displaying News articles -->
-      <a href="{% url 'article' news_item.id %} " style="text-decoration: none;">
-        <h2 class="text"> {{ news_item.title }} </h2>
-      </a>
-      <p class="text-center" style="display:none;">{{news_item.post|truncatechars:200}} </p>
-      {% empty %}
-      <h2 class="text-center">There No News Items</h2>
-      <!-- Looping through news end   -->
-      {% endfor %}
-    </div>
-  </div>
-</div>
-<footer>
-  <div class="container">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Subscribe for a Newsletter!!</h5>
-        {% comment %} <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> {% endcomment %}
-        <p class="card-text"></p>
-        <form action="{%url 'newsToday'%}" method="post" class="card-text">
-          {%csrf_token%}
+      <div class="card" style="width:21em">
+        <h4 class="card-title">{{ news_item.title }}</h4>
 
-          {% bootstrap_form letterForm layout='inline' %}
-          <input type="submit" value="Subscribe">
-        </form>
+
+        <img class="card-img-top" src="{{news_item.article_image.url}}" style="width:100%;">
+        <div class="card-body">
+          <p class="card-text">
+            {% autoescape on %}
+            {{ news_item.post|truncatewords:'70'|safe }}<a style="text-decoration:none;" href="{% url 'article' news_item.id %}">Read More</a>
+          </p>
+          {% endautoescape %}
+        </div>
+        
       </div>
+
+    </div>
+    {% endfor%}
+
+  </div>
+  <div class="container">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Subscribe for a Newsletter!!</h5>
+      {% comment %} <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> {% endcomment %}
+      <p class="card-text"></p>
+      <form action="{%url 'newsToday'%}" method="post" class="card-text">
+        {%csrf_token%}
+
+        {% bootstrap_form letterForm layout='inline' %}
+        <input type="submit" value="Subscribe">
+      </form>
     </div>
   </div>
-</footer>
+  </div>
 
+  {% block scripts %}
+  {{block.super}}
+  <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
+  {% endblock %}
 
+</div>
 
-{% endblock %}
-
-{% block scripts %}
-{{block.super}}
-<script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
 {% endblock %}

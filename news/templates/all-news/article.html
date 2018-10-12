@@ -17,12 +17,21 @@
         {% autoescape on %}
         {{article.post| safe}}
         {% endautoescape %}
+<!-- 
+        <h2> Truncated Article </h2>
+        <hr>
+        {% autoescape on %}
+        {{truncated.post| safe}}
+        {% endautoescape %} -->
 
       </div>
     </div>
 
     <div class="row">
-      <p>Posted {{article.pub_date|timesince}} by {{article.user.first_name}}</p>
+      <strong>
+        <p>Posted {{article.pub_date|timesince}} ago by {{article.editor}}</p>
+      </strong>
+
     </div>
 
   </div>

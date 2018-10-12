@@ -55,6 +55,11 @@ class Article(models.Model):
     def get_all_articles(cls):
         return cls.objects.all()
 
+    @classmethod
+    def get_article_by_id(cls,id):
+        article = cls.objects.get(pk=id)
+        return article
+
 class NewsLetterRecipients(models.Model):
     first_name = models.CharField(max_length = 100)
     last_name = models.CharField(max_length = 100)
